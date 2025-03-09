@@ -1,0 +1,122 @@
+Part A: Conceptual Questions
+
+Definition
+Encapsulation bundles data and methods into a class, preventing unintended modifications by restricting direct access.
+
+Example:
+A BankAccount class keeps balance private, ensuring users modify it only through methods like deposit() and withdraw().
+
+Visibility Modifiers
+
+Public: Easy access, but reduces data control.
+Private: Protects data, but limits flexibility.
+Protected: Useful for inheritance, but risks unintended changes in subclasses.
+
+Scenario for Using Protected:
+A Person class may allow a Student subclass to modify age while keeping it hidden externally.
+
+Impact on Maintenance
+Encapsulation reduces debugging by ensuring internal changes don’t affect external code.
+
+Example of Code Breaking:
+If balance were public, any code could set it negative, causing issues.
+
+Real-World Analogy
+A car:
+Public: Steering wheel, pedals (user interaction).
+Private: Engine mechanics (hidden for safety).
+Hiding internals prevents misuse while allowing safe use.
+
+Part B: Small-Class Design (Minimal Coding)
+
+Class Skeleton (C++ Example)
+
+class BankAccount {
+private:
+    double balance;
+    int accountNumber;
+public:
+    BankAccount(int accNum, double initialBalance) : accountNumber(accNum), balance(initialBalance >= 0 ? initialBalance : 0) {}
+    void deposit(double amount) { if (amount > 0) balance += amount; }
+    bool withdraw(double amount) { if (amount > 0 && amount <= balance) { balance -= amount; return true; } return false; }
+    double getBalance() const { return balance; }
+};
+
+Encapsulation Justification
+
+Private:
+
+balance: Prevents direct modification.
+
+accountNumber: Should not be changed externally.
+
+Public:
+
+deposit(): Ensures valid deposits.
+
+withdraw(): Prevents overdrafts.
+
+getBalance(): Provides read-only access.
+
+Documentation
+
+// The BankAccount class encapsulates account data.
+// Balance and accountNumber are private to prevent unauthorized modification.
+// Use deposit() and withdraw() for transactions.
+
+Part C: Reflection & Short-Answer
+
+Pros and Cons of Data Hiding
+
+Benefits:
+
+Prevents unintended modifications.
+
+Enhances maintainability.
+
+Limitation:
+
+Requires method-based access, adding slight overhead.
+
+Encapsulation vs. Abstraction
+Encapsulation hides data, abstraction hides implementation. Both limit direct access and focus on essentials.
+
+Testing Encapsulated Classes
+
+To test private data:
+
+Test public methods like deposit(), withdraw(), getBalance().
+
+Handle edge cases (e.g., overdrafts).
+
+Validate constructor behavior.
+
+Part D: Optional Research
+
+Encapsulation in Different Languages (C++ vs. Java)
+
+C++:
+
+Default: Private (class members).
+
+Getter/Setter: Optional.
+
+Protected: Access for subclasses.
+
+Java:
+
+Default: Package-private.
+
+Getter/Setter: Standard practice.
+
+Protected: Accessible in package and subclasses.
+
+Encapsulation in Large-Scale Systems
+
+Companies like Google and Microsoft use encapsulation to:
+
+Restrict direct database access via APIs.
+
+Secure user credentials and transactions.
+
+Maintain modular, scalable code.
