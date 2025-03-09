@@ -1,0 +1,69 @@
+Part A: Conceptual Questions
+Definition of a Class and an Object
+What is a class in object-oriented programming?
+A class is a blueprint or template for creating objects. It defines attributes (data members) and behaviors (methods) that the objects instantiated from the class will have.
+
+What is an object, and how does it relate to a class?
+An object is an instance of a class. It has a unique identity and contains the data and behaviors defined by its class. Multiple objects can be created from a single class, each with its own data.
+
+Constructors and Destructors
+Define a constructor. What is its role in a class?
+A constructor is a special member function of a class that is automatically called when an object is instantiated. Its primary role is to initialize the object's attributes, ensuring it starts in a valid state.
+
+Define a destructor. Why is it important in managing an object’s lifecycle?
+A destructor is a special member function that is automatically invoked when an object is destroyed. It is used to release resources, such as memory or file handles, ensuring proper cleanup and preventing resource leaks.
+
+Object Lifecycle
+Briefly describe the lifecycle of an object from instantiation to destruction.
+
+An object is instantiated when memory is allocated and the constructor initializes it.
+It exists and can be used during the program execution.
+It is destroyed either automatically (if it is a local object) or manually (if it was dynamically allocated).
+The destructor is called to clean up resources before deallocating memory.
+Why is it important for a class to manage its resources (e.g., memory) during its lifecycle?
+If a class does not manage its resources properly, it can lead to issues like memory leaks, dangling pointers, or resource exhaustion. This can negatively impact performance and cause unpredictable behavior.
+
+Part B: Minimal Coding Example (C++ Implementation)
+#include <iostream>
+#include <string>
+
+class Creature {
+private:
+    std::string name;
+    int health;
+
+public:
+    // Constructor
+    Creature(std::string creatureName, int creatureHealth) 
+        : name(creatureName), health(creatureHealth) {
+        std::cout << "Creature " << name << " is created with " << health << " health.\n";
+    }
+
+    // Destructor
+    ~Creature() {
+        std::cout << "Creature " << name << " is being destroyed.\n";
+    }
+
+    // Method to display state
+    void display() const {
+        std::cout << "Creature: " << name << ", Health: " << health << "\n";
+    }
+};
+
+int main() {
+    Creature goblin("Goblin", 50);
+    goblin.display();
+
+    return 0; // Destructor is called automatically when the object goes out of scope
+}
+Explanation:
+
+The constructor initializes the name and health attributes upon object creation.
+The destructor prints a message when the object is destroyed, ensuring cleanup.
+The object lifecycle is managed automatically when the object goes out of scope.
+
+Role of Destructors:
+Destructors are necessary for releasing dynamically allocated resources, closing file handles, or cleaning up memory. In languages like C++, which do not have automatic garbage collection, destructors prevent memory leaks.
+
+Lifecycle Management:
+If a class does not properly manage its resources, it can cause memory leaks, inefficient resource usage, or undefined behavior. This can lead to system slowdowns, crashes, or security vulnerabilities.
