@@ -1,0 +1,109 @@
+Part A: Conceptual Questions
+Definition
+What is abstraction in OOP?
+Abstraction is the process of hiding complex implementation details and exposing only the relevant features necessary for interaction. It allows developers to define high-level functionalities without revealing the underlying mechanisms.
+
+Real-world analogy
+A car’s steering wheel allows the driver to control direction without needing to understand the mechanics of the steering system, such as the rack-and-pinion mechanism.
+
+Abstraction vs. Encapsulation
+Comparison
+
+Abstraction focuses on hiding implementation details and exposing only essential functionalities.
+
+Encapsulation is about bundling data and methods together while restricting direct access to the data through access specifiers (private, protected, public).
+
+Why might someone confuse them?
+Both involve hiding details, but abstraction is about simplifying interaction (design-level concept), while encapsulation is about protecting data integrity (implementation-level concept).
+
+Designing with Abstraction
+Smart Thermostat Attributes & Methods
+
+Attributes: currentTemperature, targetTemperature, mode (cool/heat/auto)
+
+Methods: setTemperature(int temp), switchMode(string mode)
+
+Why omit internal details?
+The user does not need to know about circuit design, firmware routines, or sensor calibration—only how to set temperature and modes.
+
+Benefits of Abstraction
+Two benefits in large-scale projects
+
+Makes systems easier to maintain and extend by reducing dependencies on implementation details.
+
+Encourages modular design, allowing independent development of components.
+
+How does abstraction reduce complexity?
+It provides a simplified interface, ensuring that developers interact with only what is necessary, making the codebase more manageable.
+
+Part B: Minimal Class Example (C++)
+Here’s a simple implementation using abstraction in a banking system:
+
+#include <iostream>
+using namespace std;
+
+// Abstract class (only interface)
+class BankAccount {
+public:
+    virtual void deposit(double amount) = 0;  // Pure virtual function
+    virtual void withdraw(double amount) = 0;
+    virtual void displayBalance() const = 0;
+    virtual ~BankAccount() {} // Virtual destructor for cleanup
+};
+
+// Concrete class implementing abstraction
+class SavingsAccount : public BankAccount {
+private:
+    double balance;
+
+public:
+    SavingsAccount(double initialBalance) : balance(initialBalance) {}
+
+    void deposit(double amount) override {
+        balance += amount;
+        cout << "Deposited: $" << amount << endl;
+    }
+
+    void withdraw(double amount) override {
+        if (amount > balance) {
+            cout << "Insufficient funds!" << endl;
+        } else {
+            balance -= amount;
+            cout << "Withdrew: $" << amount << endl;
+        }
+    }
+
+    void displayBalance() const override {
+        cout << "Current Balance: $" << balance << endl;
+    }
+};
+
+int main() {
+    SavingsAccount myAccount(1000);
+    myAccount.deposit(500);
+    myAccount.withdraw(200);
+    myAccount.displayBalance();
+    return 0;
+}
+Part C: Reflection & Comparison
+Hiding details in SavingsAccount
+
+Hidden data: balance (private to prevent direct modification).
+
+Hidden methods: Internal mechanisms like interest calculations or logging.
+
+Why? Users should only interact with high-level methods like deposit() and withdraw().
+
+Polymorphism & Abstraction in BankAccount
+
+Since BankAccount is an abstract class, a SavingsAccount object can be treated as a BankAccount reference.
+
+Example:
+BankAccount* account = new SavingsAccount(1000);
+account->deposit(300); // Calls SavingsAccount's implementation
+delete account;
+This allows runtime polymorphism—different account types can implement their own versions of deposit() and withdraw().
+
+Real-world example of abstraction:
+Healthcare system: A PatientRecord interface exposes essential details (name, diagnosis, treatment history) while hiding data encryption and backend storage mechanisms.
+
