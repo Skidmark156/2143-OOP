@@ -1,0 +1,100 @@
+Part A: Conceptual Questions
+
+Definition:
+Polymorphism is an object-oriented programming (OOP) principle that allows objects of different classes to be treated as instances of a common base class, enabling a single interface to support different behaviors.
+
+Why is polymorphism a pillar of OOP?
+Polymorphism enhances code flexibility and maintainability by enabling dynamic method invocation, reducing redundancy, and facilitating code reusability across different types of objects.
+
+Compile-Time vs. Runtime
+
+Compile-time polymorphism: Also known as method overloading, it occurs when multiple methods in the same class share the same name but differ in their parameter lists.
+
+Runtime polymorphism: Also known as method overriding, it occurs when a derived class provides a specific implementation for a method declared in a base class, typically using virtual functions.
+
+Which type requires inheritance?
+
+Runtime polymorphism requires an inheritance relationship because method overriding depends on base and derived class relationships to enable dynamic dispatch.
+
+Method Overloading
+
+Why have multiple methods with the same name?
+
+Method overloading improves usability by allowing different types of inputs while keeping a consistent method name, enhancing code readability and usability.
+
+Example:
+
+A class MathOperations might have multiple add() methods: add(int, int), add(double, double), and add(String, String) to handle different types of addition.
+
+Method Overriding
+
+How does a derived class override a base class’s method?
+
+A derived class provides a specialized implementation of a method by redefining it with the same signature as the base class method.
+
+Why use the virtual keyword in C++?
+
+The virtual keyword ensures that the correct method implementation is selected at runtime through dynamic binding, allowing polymorphism to work effectively.
+
+Part B: Minimal Demonstration
+
+Option 1:
+#include <iostream>
+using namespace std;
+
+class Shape {
+public:
+    virtual void draw() = 0; // Pure virtual function
+};
+
+class Circle : public Shape {
+public:
+    void draw() override { cout << "Drawing Circle" << endl; }
+};
+
+class Rectangle : public Shape {
+public:
+    void draw() override { cout << "Drawing Rectangle" << endl; }
+};
+
+int main() {
+    Shape* shapes[] = { new Circle(), new Rectangle() };
+    for (Shape* s : shapes) s->draw();
+    return 0;
+}
+
+The draw() method is overridden in Circle and Rectangle.
+A Shape* reference calls draw(), and the correct method is executed dynamically at runtime.
+
+Part C: Overloading vs. Overriding Distinctions
+
+Overloaded Methods (Compile-Time Resolution)
+
+The compiler determines which calculate() method to call based on the arguments provided.
+
+Overridden Methods (Runtime Resolution)
+
+The correct draw() method is selected at runtime via dynamic binding.
+
+Why does this matter?
+
+It enables writing flexible, extensible code where new derived classes can be added without modifying existing code that interacts with base class references.
+
+Part D: Reflection & Real-World Applications
+
+Practical Example:
+
+Scenario: A game engine uses polymorphism to define a base Enemy class with a move() method.
+
+Benefit: New enemy types (Zombie, Robot) can be added without modifying existing movement logic.
+
+Potential Pitfalls:
+
+Overloading: Can cause confusion if parameter differences are subtle (e.g., int vs. double).
+
+Overriding: Excessive reliance on runtime polymorphism can lead to performance overhead and debugging complexity.
+
+Checking Understanding:
+
+If a Triangle class is added, existing code using Shape* references does not need modification, demonstrating polymorphism’s extensibility.
+
