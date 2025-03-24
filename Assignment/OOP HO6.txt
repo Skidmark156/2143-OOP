@@ -1,0 +1,119 @@
+Part A: Conceptual Questions
+
+Composition vs. Aggregation
+
+Definitions:
+
+Composition: A strong "has-a" relationship where the contained object cannot exist independently of the container. The lifecycle of the contained object is tightly bound to the parent.
+
+Aggregation: A weaker "has-a" relationship where the contained object can exist independently of the container. The container holds a reference to the object but does not control its lifecycle.
+
+Examples:
+
+Composition Example:
+class Engine {
+public:
+    Engine() { cout << "Engine created." << endl; }
+    ~Engine() { cout << "Engine destroyed." << endl; }
+};
+
+class Car {
+private:
+    Engine engine; // Strong ownership
+public:
+    Car() { cout << "Car created." << endl; }
+    ~Car() { cout << "Car destroyed." << endl; }
+};
+
+Aggregation Example:
+class Professor {
+public:
+    string name;
+    Professor(string n) : name(n) {}
+};
+
+class University {
+private:
+    vector<Professor*> professors; // Weak ownership
+public:
+    void addProfessor(Professor* p) { professors.push_back(p); }
+};
+
+Stronger Ownership: Composition implies a stronger form of ownership because the contained object does not exist outside of the parent object.
+
+When to Use
+
+Composition Over Inheritance:
+
+Scenario: A Car contains an Engine, but an Engine is not a type of Car. Composition is more appropriate since Car and Engine have a whole-part relationship.
+
+Reason: Car cannot function without an Engine, and an Engine should not exist independently within a Car.
+
+Aggregation Example:
+
+Scenario: A Team has multiple Players, but a Player can exist outside the Team.
+
+Reason: A Player may belong to multiple teams or switch teams, making aggregation the better choice.
+
+Differences from Inheritance
+
+"Is-a" vs. "Has-a":
+
+Inheritance models an "is-a" relationship (e.g., Dog is a Mammal).
+
+Composition/Aggregation models a "has-a" relationship (e.g., House has Rooms).
+
+Why Favor Composition?
+
+Reduces tight coupling.
+
+Enhances code reuse without deep class hierarchies.
+
+Provides flexibility to change implementations without breaking inheritance structures.
+
+Real-World Analogy
+
+A Computer has a CPU (Composition) and is used by a User (Aggregation).
+
+If the computer is discarded, the CPU is also discarded. However, the User remains unaffected.
+
+Part B: Minimal Class Design or UML
+
+Option 1: Minimal Class Example
+class Address {
+public:
+    string street, city;
+    Address(string s, string c) : street(s), city(c) {}
+};
+
+class Person {
+private:
+    Address* address; // Aggregation (loose ownership)
+public:
+    Person(Address* addr) : address(addr) {}
+};
+
+Part C: Reflection & Short Discussion
+
+Ownership & Lifecycle
+
+Composition: If the parent is destroyed, the child object is also destroyed.
+
+Aggregation: The child can persist even after the parent is gone.
+
+Advantages & Pitfalls
+
+Advantage of Composition: Ensures encapsulation and strict lifecycle management.
+
+Pitfall: Using composition when aggregation is sufficient can reduce flexibility (e.g., making independent objects unnecessarily dependent).
+
+Contrast with Inheritance
+
+"Has-a" vs. "Is-a": A Car has an Engine (composition), while a Dog is an Animal (inheritance).
+
+Why Avoid Inheritance?
+
+Multiple inheritance can introduce complexity.
+Encourages modular and flexible code structure.
+Reduces dependency on deep class hierarchies.
+
