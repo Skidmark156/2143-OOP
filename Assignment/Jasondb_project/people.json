@@ -1,0 +1,50 @@
+[
+    {
+        "first_name": "Teresa",
+        "last_name": "Smith",
+        "city": "Austin",
+        "ssn": null,
+        "phone": null,
+        "id": 1
+    },
+    {
+        "first_name": "John",
+        "last_name": "Doe",
+        "city": "Dallas",
+        "ssn": null,
+        "phone": null,
+        "id": 2
+    },
+    {
+        "first_name": "Teresa",
+        "last_name": "Smith",
+        "city": "Austin",
+        "ssn": null,
+        "phone": null,
+        "id": 3
+    },
+    {
+        "first_name": "John",
+        "last_name": "Doe",
+        "city": "Dallas",
+        "ssn": null,
+        "phone": null,
+        "id": 4
+    },
+    {
+        "first_name": "Teresa",
+        "last_name": "Smith",
+        "city": "Austin",
+        "ssn": null,
+        "phone": null,
+        "id": 5
+    },
+    {
+        "first_name": "John",
+        "last_name": "Doe",
+        "city": "Dallas",
+        "ssn": null,
+        "phone": null,
+        "id": 6
+    }
+]

@@ -1,0 +1,23 @@
+[
+    {
+        "id": 1001,
+        "name": "Hoba",
+        "year": 1920,
+        "mass": 60000,
+        "location": {"lat": -19.5833, "lng": 17.9167}
+    },
+    {
+        "id": 1002,
+        "name": "Willamette",
+        "year": 1902,
+        "mass": 15000,
+        "location": {"lat": 45.3667, "lng": -122.6333}
+    },
+    {
+        "id": 1003,
+        "name": "El Chaco",
+        "year": 1969,
+        "mass": 37000,
+        "location": {"lat": -27.4667, "lng": -60.5833}
+    }
+]

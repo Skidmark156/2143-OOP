@@ -1,0 +1,17 @@
+[
+    {
+        "id": "us1234",
+        "properties": {"mag": 6.2, "place": "California"},
+        "geometry": {"coordinates": [-122.75, 38.297, 10.0]}
+    },
+    {
+        "id": "us5678",
+        "properties": {"mag": 4.8, "place": "Nevada"},
+        "geometry": {"coordinates": [-118.15, 39.25, 8.0]}
+    },
+    {
+        "id": "us91011",
+        "properties": {"mag": 7.1, "place": "Alaska"},
+        "geometry": {"coordinates": [-149.5, 61.6, 33.0]}
+    }
+]
